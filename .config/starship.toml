@@ -1,0 +1,60 @@
+format = """\
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_state\
+$git_metrics\
+$fill\
+$jobs $cmd_duration $time\
+$line_break\
+$character\
+"""
+
+[fill]
+symbol = " "
+
+[directory]
+style = "blue"
+read_only = " "
+truncation_length = 4
+truncate_to_repo = true
+
+[character]
+success_symbol = "[](green)"
+error_symbol = "[>](red)"
+vicmd_symbol = "[](yellow)"
+
+[git_branch]
+symbol = " "
+format = "[$symbol$branch]($style)"
+style = "bright-black"
+
+[jobs]
+symbol = ""
+style = "bold red"
+number_threshold = 1
+format = "[$symbol]($style)"
+
+[git_status]
+conflicted = "ﬔ"
+ahead = ""
+behind = ""
+diverged = "ﬕ"
+up_to_date = ""
+untracked = "?"
+stashed = "ﲐ"
+modified = "!"
+staged = "+"
+renamed = "凜"
+deleted = "﫧"
+style = "bold red"
+ignore_submodules = false
+
+[cmd_duration]
+format = "[ $duration]($style)"
+style = "bold yellow"
+
+[time]
+disabled = false
+format = "[ $time]($style)"
