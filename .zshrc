@@ -40,6 +40,17 @@ miniplug load
 alias ls='k'
 alias config='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 
+take() {
+    if [[ $# -lt 1 ]]
+    then
+        echo "take: Missing operand (please input directory)"
+        return
+    fi
+
+    mkdir $1
+    cd $1
+}
+
 # End of custom aliases
 # Prompt config
 
