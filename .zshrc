@@ -29,6 +29,7 @@ miniplug plugin 'zsh-users/zsh-completions'
 miniplug plugin 'supercrabtree/k'
 miniplug plugin 'zsh-users/zsh-syntax-highlighting'
 miniplug plugin 'zsh-users/zsh-autosuggestions'
+miniplug plugin 'unixorn/fzf-zsh-plugin'
 
 miniplug load
 
@@ -39,6 +40,11 @@ miniplug load
 
 alias ls='k'
 alias config='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+alias n='nvim .'
+alias cw='cargo watch'
+alias shutdown='mnt/c/WINDOWS/system32/cmd.exe --terminate $WSL_DISTRO_NAME'
+alias reboot='cd /mnt/c/ && mnt/c/WINDOWS/system32/cmd.exe /c start "rebooting WSL" cmd /c "timeout 5 && wsl -d $WSL_DISTRO_NAME" && wsl.exe --terminate $WSL_DISTRO_NAME'
+alias start='/mnt/c/Program\ Files/PowerShell/7/pwsh.exe -c start'
 
 take() {
     if [[ $# -lt 1 ]]
@@ -57,3 +63,13 @@ take() {
 eval "$(starship init zsh)"
 
 # End of prompt config
+# Startup hook
+
+keep_current_path() {
+  printf "\e]9;9;%s\e\\" "$(wslpath -w "$PWD")"
+}
+precmd_functions+=(keep_current_path)
+source /usr/share/nvm/init-nvm.sh
+
+clear
+pfetch

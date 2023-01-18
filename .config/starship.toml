@@ -5,6 +5,8 @@ $directory\
 $git_branch\
 $git_state\
 $git_metrics\
+$rust\
+$nodejs\
 $fill\
 $jobs $cmd_duration $time\
 $line_break\
@@ -58,3 +60,11 @@ style = "bold yellow"
 [time]
 disabled = false
 format = "[ $time]($style)"
+
+[rust]
+format = "[$symbol ($version )]($style)"
+symbol = " "
+
+[nodejs]
+format = "[$symbol ($version )]($style)"
+symbol = " "
