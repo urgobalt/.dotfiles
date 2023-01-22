@@ -45,6 +45,13 @@ alias cw='cargo watch'
 alias shutdown='mnt/c/WINDOWS/system32/cmd.exe --terminate $WSL_DISTRO_NAME'
 alias reboot='cd /mnt/c/ && mnt/c/WINDOWS/system32/cmd.exe /c start "rebooting WSL" cmd /c "timeout 5 && wsl -d $WSL_DISTRO_NAME" && wsl.exe --terminate $WSL_DISTRO_NAME'
 alias start='/mnt/c/Program\ Files/PowerShell/7/pwsh.exe -c start'
+alias ga='git add'
+alias gc='git commit'
+alias gr='git remove'
+alias gp='git push'
+alias gw='git worktree'
+alias gwa='git worktree add'
+alias gwr='git worktree remove'
 
 take() {
     if [[ $# -lt 1 ]]
@@ -55,6 +62,13 @@ take() {
 
     mkdir $1
     cd $1
+}
+
+astro-update() {
+    cd 
+    config fetch AstroNvim main
+    config subtree pull --prefix .config/nvim AstroNvim main --squash
+    cd -
 }
 
 # End of custom aliases
@@ -70,6 +84,8 @@ keep_current_path() {
 }
 precmd_functions+=(keep_current_path)
 source /usr/share/nvm/init-nvm.sh
+
+source "$HOME/.scripts/worktree-traveler.sh"
 
 clear
 pfetch
