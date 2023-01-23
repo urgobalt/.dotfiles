@@ -18,6 +18,10 @@ worktree-traveler() {
     gum choose --cursor.foreground "$frost1" --selected.foreground "$frost1" "$@"
   }
 
+  frost_confirm() {
+    gum confirm --selected.background "#8FBCBB" --unselected.background "#2E3440"
+  }
+
   get_worktrees() {
       frost_choose $(git worktree list --porcelain | tail -n +4 | grep -o ' /[^"]*' | while read dir; do basename -- "$dir"; done)
   }
@@ -41,28 +45,30 @@ worktree-traveler() {
   case $command in
       add)
           echo "Choose $(frost "branch")"
-          branch=$(get_outside_branches)
+          if ! branch=$(get_outside_branches); then
+            echo $(gum style --foreground "#81A1C1" "\nNo missing upstream branches to add")
+            return
+          fi
           echo "Adding worktree from branch $(frost "$branch")"
           git worktree add "$root_dir/$branch" "$branch"
           cd "$root_dir/$branch"
           ;;
       checkout)
           echo "Choose $(frost "branch")"
-          branch=$(get_worktrees)
+          branch=$(get_worktrees) || return
           echo "Moving to worktree $(frost "$branch")"
-          cd "$root_dir/$branch"
+          cd "$root_dir/$branch" || return
           ;;
       new)
           echo "Choose $(frost "branch") name"
-          branch=$(gum input --placeholder "master...")
-          git worktree add -B "$branch" "$root_dir/$branch"
-          cd "$root_dir/$branch"
+          branch=$(gum input --placeholder "master...") || return
+          git worktree add -b "$branch" "$root_dir/$branch" || return
+          cd "$root_dir/$branch" || return
           ;;
       remove)
           echo "Choose $(frost branch)"
-          branch=$(get_worktrees)
-          echo "Removing worktree $(frost "$branch")"
-          git worktree remove "$root_dir/$branch"
+          branch=$(get_worktrees) || return
+          frost_confirm && git worktree remove "$root_dir/$branch"
           ;;
   esac
 
