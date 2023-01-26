@@ -79,6 +79,7 @@ eval "$(starship init zsh)"
 # End of prompt config
 # Startup hook
 
+clear
 keep_current_path() {
   printf "\e]9;9;%s\e\\" "$(wslpath -w "$PWD")"
 }
@@ -87,5 +88,4 @@ source /usr/share/nvm/init-nvm.sh
 
 source "$HOME/.scripts/worktree-traveler.sh"
 
-clear
 pfetch
