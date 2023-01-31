@@ -101,7 +101,9 @@ function worktree-traveler() {
       remove)
           echo "Choose $(frost branch)"
           branch=$(get_worktrees) || return
-          frost_confirm && git worktree remove "$root_dir/$branch"
+          cd "$root_dir"
+          frost_confirm && git worktree remove "$root_dir/$branch" || $(frost_confirm "Failed removing branch, use force?" && git worktree remove -f "$root_dir/$branch")
+          cd "$root_dir/$branch"
           ;;
       init)
           if frost_confirm "Init project in current directory?"; then
