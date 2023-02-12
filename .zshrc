@@ -40,7 +40,10 @@ miniplug load
 # End of plugins
 # Custom aliases
 
-alias ll='k -Ah'
+alias ls="ls --color=auto"
+alias ll='k -A'
+alias la='ls -A'
+alias l='ls -CF'
 alias config='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 alias n='nvim .'
 alias cw='cargo watch'
@@ -81,8 +84,6 @@ eval "$(starship init zsh)"
 # End of prompt config
 # Startup hook
 
-echo
-
 keep_current_path() {
   printf "\e]9;9;%s\e\\" "$(wslpath -w "$PWD")"
 }
@@ -91,4 +92,5 @@ source /usr/share/nvm/init-nvm.sh
 
 source "$HOME/.scripts/worktree-traveler.sh"
 
+echo
 pfetch
