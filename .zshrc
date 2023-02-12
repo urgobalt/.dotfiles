@@ -18,7 +18,7 @@ compinit
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
-bindkey -v
+bindkey -e
 
 # End of lines configured by zsh-newuser-install
 # Plugins
@@ -38,7 +38,7 @@ miniplug load
 # End of plugins
 # Custom aliases
 
-alias ls='k'
+alias ll='k -Ah'
 alias config='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 alias n='nvim .'
 alias cw='cargo watch'
