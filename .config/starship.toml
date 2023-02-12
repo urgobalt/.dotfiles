@@ -8,7 +8,7 @@ $git_metrics\
 $rust\
 $nodejs\
 $fill\
-$jobs $cmd_duration $time\
+$jobs $cmd_duration\
 $line_break\
 $character\
 """
