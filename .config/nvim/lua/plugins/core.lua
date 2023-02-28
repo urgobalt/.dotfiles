@@ -4,9 +4,13 @@ return {
     as = "nord",
   },
   {
+    "olivercederborg/poimandres.nvim",
+    as = "poimandres",
+  },
+  {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "nord",
+      colorscheme = "poimandres",
     },
   },
 }
