@@ -1,5 +1,3 @@
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 clear
 
 # The following lines were added by compinstall
@@ -96,9 +94,6 @@ source "$HOME/.scripts/worktree-traveler.sh"
 
 echo
 pfetch
-
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
 
 # bun completions
 [ -s "/home/urgobalt/.bun/_bun" ] && source "/home/urgobalt/.bun/_bun"
