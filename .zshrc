@@ -28,7 +28,6 @@ bindkey -e
 source "$HOME/.local/share/miniplug.zsh"
 
 miniplug plugin 'zsh-users/zsh-completions'
-miniplug plugin 'supercrabtree/k'
 miniplug plugin 'zsh-users/zsh-syntax-highlighting'
 miniplug plugin 'zsh-users/zsh-autosuggestions'
 miniplug plugin 'unixorn/fzf-zsh-plugin'
@@ -40,10 +39,10 @@ miniplug load
 # End of plugins
 # Custom aliases
 
-alias ls="ls --color=auto"
-alias ll='k -A'
-alias la='ls -A'
-alias l='ls -CF'
+alias ls="exa"
+alias ll="exa -al --git"
+alias la='exa -a1'
+alias l='exa -D'
 alias config='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 alias n='nvim .'
 alias cw='cargo watch'
